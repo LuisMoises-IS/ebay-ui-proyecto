@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Product from "./views/product";
+import ProductCategory from "./views/product-category";
+import CreateProduct from "./views/create-product";
+import Categories from "./views/categories";
+
+import './css/vendor/bootstrap/css/bootstrap.min.css';
+import './css/main.css';
+
+const App: React.FC = () => (
+  <BrowserRouter>
+      <Switch>
+          <Route path="/products" exact component={Product}/>
+          <Route path="/products/new" exact component={CreateProduct}/>
+          <Route path="/products/:id/edit" exact component={CreateProduct}/>
+          <Route path="/categories" exact component={Categories} />
+          <Route path="/categories/:id" exact component={ProductCategory} />
+      </Switch>
+  </BrowserRouter>
+  
+);
 
 export default App;
