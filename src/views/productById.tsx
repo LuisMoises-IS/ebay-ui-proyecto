@@ -8,10 +8,10 @@ import Card from "../components/card";
 
 import {IProduct} from "../interfaces/product";
 
-import {getProductByCategory} from "../services/products";
+import {getproduct} from "../services/products";
 import {getCategory} from "../services/categories";
 
-const ProductCategory: React.FC = () => { 
+const ProductById: React.FC = () => { 
 
     const {id} = useParams();
 
@@ -22,14 +22,14 @@ const ProductCategory: React.FC = () => {
     useEffect(()=>{
         if(id && update){
             
-            getProductByCategory(id).then( r=>{                
+            getproduct(id).then( r=>{                
                 setUpdate(false);
                 setProducts(r.data);
             });
-
-            getCategory(id).then(r=>{                
+            /*
+            getproduct(id).then(r=>{                
                 setName(r[0].name);
-            });
+            });*/
         }      
     },[update,id]);
 
@@ -64,4 +64,4 @@ const ProductCategory: React.FC = () => {
 
 }
 
-export default ProductCategory;
+export default ProductById;

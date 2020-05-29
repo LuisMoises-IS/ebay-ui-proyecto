@@ -12,7 +12,7 @@ const Categories: React.FC = () => {
 
             <div className="container">
                 <Subheader 
-                    title="Category Management"                     
+                    title="All Categories"                     
                 />
                 <div className="row">
                     <CategoryTable/>

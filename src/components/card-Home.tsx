@@ -11,7 +11,7 @@ interface ICardProps{
     ProductId?: string
 }
 
-const Card:React.FC<ICardProps> = ({img,title,description,price,category, btn_label, ProductId}) => {
+const CardHome:React.FC<ICardProps> = ({img,title,description,price,category, btn_label, ProductId}) => {
 
     return(
         <div className="col-lg-3 col-md-6 mb-4">
@@ -20,16 +20,16 @@ const Card:React.FC<ICardProps> = ({img,title,description,price,category, btn_la
                     {category}
                 </div>      
                 <div className="card-body">
-                    <img src={img} alt="+" className="img-thumbnail" ></img>
+                    <img src={img} alt="..." className="img-thumbnail"></img>
                     <h4 className="card-title">{title}</h4>
                     <p className="card-text">{description}</p>
-                    <h5 className="cad-title">$ {price}</h5>
+                    <h5 className="cad-title">{price}</h5>
                 </div>
                 <div className="card-footer">
                     { btn_label ? (
-                        <Link to="/products/new">{btn_label}</Link>
+                        <Link to={`/products/${ProductId}`}>View</Link>
                     ) : (
-                        <Link to={`/products/${ProductId}/edit`}>Edit</Link>
+                        <Link to={`/products/${ProductId}`}>View</Link>
                     ) 
                     
                     }
@@ -42,4 +42,4 @@ const Card:React.FC<ICardProps> = ({img,title,description,price,category, btn_la
 
 }
 
-export default Card;
+export default CardHome;

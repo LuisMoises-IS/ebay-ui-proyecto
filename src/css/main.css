@@ -11,3 +11,19 @@
     padding-top: 30px;
   }
   
+
+  .navbar-brand{
+    font-family: "Arial Black";
+    font-size: 30px;
+  }
+
+  .footer{
+    font-family: "Arial Black";
+    font-size: 18px;
+  }
+
+  .headerText{
+    font-family: "Century Gothic";
+    font-size: 22px;
+    color: black !important;
+  }

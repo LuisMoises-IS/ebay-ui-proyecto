@@ -87,13 +87,13 @@ const CategoryTable: React.FC = () => {
                 completed={completed}
             />
 
-            <table className="table">
-                <thead className="thead-dark">
+            <table className="table table-striped">
+                <thead className="table-primary">
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Products Setted</th>
-                        <th scope="col"></th>
+            
                         <th scope="col"></th>                
                     </tr>
                 </thead>
@@ -102,22 +102,15 @@ const CategoryTable: React.FC = () => {
                         <tr key={data._id} >
                             <th scope="row">{data._id}</th>
                             <td>{data.name}</td>
-                            <td>{data.l.length}</td>
+                            <td className="text-center">{data.l.length}</td>
+                        
                             <td>
                                 <button 
                                 type="button" 
-                                className="btn btn-danger" 
-                                onClick={showModal} 
-                                id={data._id}
-                                >Delete</button>
-                            </td>
-                            <td>
-                                <button 
-                                type="button" 
-                                className="btn btn-info" 
+                                className="btn btn-outline-success"
                                 onClick={redirectTo} 
                                 id={data._id}
-                                >Go</button>
+                                >View All</button>
                             </td>
                         </tr>
                     ))}

@@ -1,17 +1,15 @@
 import React,{useState,useEffect} from "react";
 
 import Modal from "./modal";
-import {getCategories} from "../services/categories";
-import {postProduct,getproduct,putProduct} from "../services/products";
-import {ICategory} from "../interfaces/category";
+
+import {postUser,getUser} from "../services/user";
 
 import {useParams} from "react-router-dom";
 
 import useFormHelper from "../helpers/useFormHelper";
 
-const ProductForm:React.FC = () => {
+const UserForm:React.FC = () => {
 
-    const [categories,setCategories] = useState([]);
     const [cleanUp,setCleanUp] = useState(true);
     
     /* MODAL */
@@ -29,30 +27,20 @@ const ProductForm:React.FC = () => {
       setShowmodal(true);
     }      
 
-    function saveProduct(){
+    function saveUser(){
 
       if(!completed){
         setSubmitting(true);
         setMessage("Sending...");
 
         if(id){
-          putProduct(id,values).then(value=>{
+          postUser(values).then(value=>{
             setCompleted(true);
             setSubmitting(false);
             if(value.data.successed){
-              setMessage("Product updated with success");          
+              setMessage("Account created with success");          
             }else{
-              setMessage("Product name already exist");
-            }
-          })
-        }else{
-          postProduct(values).then(value=>{
-            setCompleted(true);
-            setSubmitting(false);
-            if(value.data.successed){
-              setMessage("Product stored with success");          
-            }else{
-              setMessage("Product name already exist");
+              setMessage("User account already exist");
             }
           })
         }
@@ -70,10 +58,10 @@ const ProductForm:React.FC = () => {
      
     const states = useState({
       name: "",
-      img: "",
-      description: "",
-      price: "",
-      category: ""
+      email: "",
+      address: "",
+      phoneNumber: "",
+      password: ""
     });      
 
     const {
@@ -82,26 +70,20 @@ const ProductForm:React.FC = () => {
       updateValues      
     } = useFormHelper(states);
 
+    //Revisar, se eliminara
     useEffect(()=>{
       if(id && cleanUp){
         setCleanUp(false);
-        getproduct(id).then(value=>{
+        getUser(id).then(value=>{
           updateValues({
-            img: value.data.img,
             name: value.data.name,
             description: value.data.description,
-            price: value.data.price,
             category: value.data.category
           });          
         })
       }
     },[id,updateValues,cleanUp])
 
-    useEffect(()=>{
-      getCategories().then(c => {
-        setCategories(c);
-      });
-    },[]);
 
     useEffect(() => {
       return () => {
@@ -120,14 +102,15 @@ const ProductForm:React.FC = () => {
           lbl_snd_btn="No"
           show={showmodal}
           closeModal={hideModal}
-          accept={saveProduct}
+          accept={saveUser}
           submitting={submitting}
           completed={completed}
         />
 
         <form className="align-items-center" >
+
         <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Product Name</label>
+          <label htmlFor="formGroupExampleInput">Name</label>
           <input 
             type="text" 
             className="form-control" 
@@ -137,54 +120,57 @@ const ProductForm:React.FC = () => {
             defaultValue={values.name}
           />
         </div>
+
         <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Price</label>
-          <input 
-            type="text"
-            className="form-control" 
-            id="formGroupExampleInput"
-            onChange={handleChange}
-            name="price"
-            defaultValue={values.price}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Img url</label>
+          <label htmlFor="formGroupExampleInput">email</label>
           <input 
             type="text" 
             className="form-control" 
             id="formGroupExampleInput"
             onChange={handleChange}
-            name="Img"
-            defaultValue={values.img}
+            name="email"
+            defaultValue={values.email}
           />
         </div>
+
         <div className="form-group">
-          <label htmlFor="exampleFormControlSelect1">Category</label>
-          <select 
+          <label htmlFor="formGroupExampleInput">address</label>
+          <input 
+            type="text" 
             className="form-control" 
-            id="exampleFormControlSelect1"
+            id="formGroupExampleInput"
             onChange={handleChange}
-            name="category"
-            value={values.category}
-          >
-            <option value="">Choose Category</option>
-            {categories.map( (category:ICategory) => (
-              <option value={category._id} key={category._id} >{category.name}</option>
-            ) )}
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">Description</label>
-          <textarea 
-            className="form-control" 
-            id="exampleFormControlTextarea1" 
-            rows={6}
-            onChange={handleChange}
-            name="description"
-            defaultValue={values.description}
+            name="address"
+            defaultValue={values.address}
           />
         </div>
+
+        <div className="form-group">
+          <label htmlFor="formGroupExampleInput">phoneNumber</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            id="formGroupExampleInput"
+            onChange={handleChange}
+            name="phoneNumber"
+            defaultValue={values.phoneNumber}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="formGroupExampleInput">password</label>
+          <input 
+            type="password" 
+            className="form-control" 
+            id="formGroupExampleInput"
+            onChange={handleChange}
+            name="password"
+            defaultValue={values.password}
+          />
+        </div>
+        
+        
+       
        
     </form> 
     <button className="btn btn-primary" onClick={showModal} >Submit</button>
@@ -194,5 +180,4 @@ const ProductForm:React.FC = () => {
     );
 }
 
-export default ProductForm;
-
+export default UserForm;
