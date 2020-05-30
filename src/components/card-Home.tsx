@@ -23,7 +23,7 @@ const CardHome:React.FC<ICardProps> = ({img,title,description,price,category, bt
                     <img src={img} alt="..." className="img-thumbnail"></img>
                     <h4 className="card-title">{title}</h4>
                     <p className="card-text">{description}</p>
-                    <h5 className="cad-title">{price}</h5>
+                    <h5 className="cad-title">$ {price}</h5>
                 </div>
                 <div className="card-footer">
                     { btn_label ? (

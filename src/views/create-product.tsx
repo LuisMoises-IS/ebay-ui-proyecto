@@ -84,7 +84,7 @@ const CreateProduct: React.FC = () => {
                     lbl_snd_btn="No"
                     show={showmodal}
                     closeModal={hideModal}
-                    accept={dropProduct} //// It should change based on view logic
+                    accept={dropProduct}
                     submitting={submitting}
                     completed={completed}
                 />

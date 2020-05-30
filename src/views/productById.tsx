@@ -15,12 +15,12 @@ const ProductById: React.FC = () => {
 
     const {id} = useParams();
 
-    const [peoducts,setProducts] = useState([]);
+    const [products,setProducts] = useState();
     const [update,setUpdate] = useState(true);
-    const [name,setName] = useState("");
+    //const [name,setName] = useState("");
 
     useEffect(()=>{
-        if(id && update){
+        if( update){
             
             getproduct(id).then( r=>{                
                 setUpdate(false);
@@ -31,7 +31,7 @@ const ProductById: React.FC = () => {
                 setName(r[0].name);
             });*/
         }      
-    },[update,id]);
+    },[update, id]);
 
     useEffect(() => {
         return () => {
@@ -43,19 +43,19 @@ const ProductById: React.FC = () => {
         <div>
             <Header></Header>
             <div className="container">
-                <Subheader title={name} ></Subheader>
+                <Subheader title="Buy now" ></Subheader>
                 <div className="row text-center">                    
-                    {peoducts.map((prod: IProduct,index) => (
+                {(prod: IProduct,index) => (
                         <Card
                             img={prod.img} 
                             title={prod.name} 
                             description={prod.description}
                             price={prod.price} 
                             key={prod._id} 
-                            category={name}
+                            category={prod.category[0].name}
                             ProductId={prod._id}
                         />
-                    ))}
+                    )}
                 </div>
             </div>
             <Footer></Footer>

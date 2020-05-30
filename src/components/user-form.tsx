@@ -70,21 +70,6 @@ const UserForm:React.FC = () => {
       updateValues      
     } = useFormHelper(states);
 
-    //Revisar, se eliminara
-    useEffect(()=>{
-      if(id && cleanUp){
-        setCleanUp(false);
-        getUser(id).then(value=>{
-          updateValues({
-            name: value.data.name,
-            description: value.data.description,
-            category: value.data.category
-          });          
-        })
-      }
-    },[id,updateValues,cleanUp])
-
-
     useEffect(() => {
       return () => {
         console.log("cleaned up");

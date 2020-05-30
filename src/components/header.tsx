@@ -20,10 +20,10 @@ const Header: React.FC = () => (
                 <Link className="nav-link" to="/categories" >Categories</Link>
             </li>       
             <li className="nav-item active headerText">
-                <Link className="nav-link" to="/categories" >Cart</Link>
+                <Link className="nav-link" to="/categories" ><i className="fas fa-shopping-cart"></i>  Cart</Link>
             </li> 
             <li className="nav-item active headerText">
-                <Link className="nav-link" to="/user/new" >User</Link>
+                <Link className="nav-link" to="/user/new" ><i className="fas fa-user"></i>  SignIn</Link>
             </li>    
             </ul>
         </div>

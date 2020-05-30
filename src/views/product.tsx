@@ -13,7 +13,7 @@ const Product: React.FC = () => {
 
     const [products,setProducts] = useState([]);
     const [update,setUpdate] = useState(true);
-
+    
     useEffect(()=>{
         if(update){
             getProducts().then( r=>{                

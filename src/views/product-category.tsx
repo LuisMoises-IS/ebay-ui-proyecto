@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Subheader from "../components/subheader";
-import Card from "../components/card";
+import CardHome from "../components/card-Home";
 
 import {IProduct} from "../interfaces/product";
 
@@ -46,7 +46,7 @@ const ProductCategory: React.FC = () => {
                 <Subheader title={name} ></Subheader>
                 <div className="row text-center">                    
                     {peoducts.map((prod: IProduct,index) => (
-                        <Card
+                        <CardHome
                             img={prod.img} 
                             title={prod.name} 
                             description={prod.description}
